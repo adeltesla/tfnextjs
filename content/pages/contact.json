@@ -1,0 +1,24 @@
+{
+  "slug": "contact",
+  "name": "Contact",
+  "description": "Contact form, office locations, and map",
+  "sections": {
+    "hero": {
+      "title": "Let's Start a Conversation",
+      "subtitle": "Whether you have a project in mind, want to explore a partnership, or simply have a question — we're here to help. Reach out and we'll get back to you within one business day."
+    },
+    "form": {
+      "title": "Send Us a Message",
+      "subtitle": "Fill out the form below and our team will respond within 24 hours."
+    },
+    "offices": {
+      "title": "Our Offices",
+      "subtitle": "With three offices across three continents, we provide local expertise with global capabilities."
+    },
+    "consultation": {
+      "title": "Free Consultation",
+      "content": "<p>Not sure where to start? Book a free 30-minute consultation with one of our senior architects to discuss your project needs and get expert recommendations.</p>"
+    }
+  },
+  "updatedAt": "2026-05-22T00:00:00.000Z"
+}

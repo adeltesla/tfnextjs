@@ -1,0 +1,24 @@
+{
+  "slug": "home",
+  "name": "Home",
+  "description": "Main landing page with hero, services, stats, and testimonials",
+  "sections": {
+    "hero": {
+      "title": "Building the Future, One Solution at a Time",
+      "subtitle": "We are a technology consulting firm that partners with ambitious businesses to design, build, and scale digital products and infrastructure that drive real results."
+    },
+    "about": {
+      "title": "A Decade of Innovation and Excellence",
+      "content": "<p>Founded in 2015 in San Francisco, TechForge Solutions has grown from a small team of passionate engineers into a full-service technology consulting firm serving clients across 15+ countries.</p><p>Our mission is simple: empower businesses to thrive in the digital age by delivering innovative, reliable, and scalable technology solutions. We believe that great technology should be accessible to every organization, regardless of size.</p>"
+    },
+    "services": {
+      "title": "Comprehensive Technology Services",
+      "subtitle": "From strategy to execution, we provide end-to-end technology services that help businesses innovate, scale, and compete."
+    },
+    "cta": {
+      "title": "Ready to Transform Your Business?",
+      "subtitle": "Let's discuss how TechForge can help you achieve your technology goals. Schedule a free consultation with our experts today."
+    }
+  },
+  "updatedAt": "2026-05-22T05:17:09.379Z"
+}

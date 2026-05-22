@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getPageContent } from "@/lib/content";
 import {
   ArrowRight,
   Target,
@@ -105,7 +106,16 @@ const milestones = [
   },
 ];
 
-export default function AboutPage() {
+export const dynamic = "force-dynamic";
+
+export default async function AboutPage() {
+  const content = await getPageContent("about");
+  const hero = content?.sections.hero;
+  const mission = content?.sections.mission;
+  const vision = content?.sections.vision;
+  const overview = content?.sections.overview;
+  const cta = content?.sections.cta;
+
   return (
     <>
       {/* Hero */}
@@ -116,12 +126,10 @@ export default function AboutPage() {
               About TechForge
             </p>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              Our Story, Our Mission, Our People
+              {hero?.title || "Our Story, Our Mission, Our People"}
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-[#b8b5d6]">
-              From a three-person startup to a global technology consulting firm,
-              TechForge Solutions has been on a mission to make great technology
-              accessible to every organization. Here&apos;s how we got here.
+              {hero?.subtitle || "From a three-person startup to a global technology consulting firm, TechForge Solutions has been on a mission to make great technology accessible to every organization. Here's how we got here."}
             </p>
           </div>
         </div>
@@ -135,27 +143,35 @@ export default function AboutPage() {
               <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
                 <Target className="h-7 w-7 text-primary" />
               </div>
-              <h2 className="mt-6 text-2xl font-bold">Our Mission</h2>
-              <p className="mt-4 text-lg leading-relaxed text-muted">
-                To empower businesses of all sizes to thrive in the digital age
-                by delivering innovative, reliable, and scalable technology
-                solutions. We believe technology should be a catalyst for growth,
-                not a barrier — and we&apos;re committed to making that a reality
-                for every client we serve.
-              </p>
+              <h2 className="mt-6 text-2xl font-bold">{mission?.title || "Our Mission"}</h2>
+              {mission?.content ? (
+                <div className="mt-4 text-lg leading-relaxed text-muted [&_p]:mb-4" dangerouslySetInnerHTML={{ __html: mission.content }} />
+              ) : (
+                <p className="mt-4 text-lg leading-relaxed text-muted">
+                  To empower businesses of all sizes to thrive in the digital age
+                  by delivering innovative, reliable, and scalable technology
+                  solutions. We believe technology should be a catalyst for growth,
+                  not a barrier — and we&apos;re committed to making that a reality
+                  for every client we serve.
+                </p>
+              )}
             </div>
             <div className="rounded-2xl border border-border bg-card p-10">
               <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10">
                 <Eye className="h-7 w-7 text-accent" />
               </div>
-              <h2 className="mt-6 text-2xl font-bold">Our Vision</h2>
-              <p className="mt-4 text-lg leading-relaxed text-muted">
-                To be the most trusted technology partner for forward-thinking
-                organizations worldwide. We envision a future where every
-                business — from startups to enterprises — has access to
-                world-class technology expertise that enables them to innovate
-                fearlessly and scale confidently.
-              </p>
+              <h2 className="mt-6 text-2xl font-bold">{vision?.title || "Our Vision"}</h2>
+              {vision?.content ? (
+                <div className="mt-4 text-lg leading-relaxed text-muted [&_p]:mb-4" dangerouslySetInnerHTML={{ __html: vision.content }} />
+              ) : (
+                <p className="mt-4 text-lg leading-relaxed text-muted">
+                  To be the most trusted technology partner for forward-thinking
+                  organizations worldwide. We envision a future where every
+                  business — from startups to enterprises — has access to
+                  world-class technology expertise that enables them to innovate
+                  fearlessly and scale confidently.
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -170,22 +186,28 @@ export default function AboutPage() {
                 Who We Are
               </p>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                A Team of Problem Solvers and Innovators
+                {overview?.title || "A Team of Problem Solvers and Innovators"}
               </h2>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
-                TechForge Solutions is a full-service technology consulting firm
-                headquartered in San Francisco, California. We specialize in
-                helping businesses navigate digital transformation through expert
-                consulting, custom software development, cloud architecture, and
-                AI-powered solutions.
-              </p>
-              <p className="mt-4 text-lg leading-relaxed text-muted">
-                Our team of 50+ engineers, designers, and strategists bring
-                decades of combined experience across fintech, healthcare,
-                logistics, e-commerce, and enterprise SaaS. We work with
-                organizations ranging from high-growth startups to Fortune 500
-                companies.
-              </p>
+              {overview?.content ? (
+                <div className="mt-6 text-lg leading-relaxed text-muted [&_p]:mb-4" dangerouslySetInnerHTML={{ __html: overview.content }} />
+              ) : (
+                <>
+                  <p className="mt-6 text-lg leading-relaxed text-muted">
+                    TechForge Solutions is a full-service technology consulting firm
+                    headquartered in San Francisco, California. We specialize in
+                    helping businesses navigate digital transformation through expert
+                    consulting, custom software development, cloud architecture, and
+                    AI-powered solutions.
+                  </p>
+                  <p className="mt-4 text-lg leading-relaxed text-muted">
+                    Our team of 50+ engineers, designers, and strategists bring
+                    decades of combined experience across fintech, healthcare,
+                    logistics, e-commerce, and enterprise SaaS. We work with
+                    organizations ranging from high-growth startups to Fortune 500
+                    companies.
+                  </p>
+                </>
+              )}
               <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <div className="text-center">
                   <Building2 className="mx-auto h-6 w-6 text-primary" />
@@ -329,11 +351,10 @@ export default function AboutPage() {
       <section className="bg-gradient-to-r from-primary to-[#7083ff] py-16">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Want to Be Part of Our Story?
+            {cta?.title || "Want to Be Part of Our Story?"}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
-            Whether you&apos;re looking for a technology partner or a career
-            opportunity, we&apos;d love to hear from you.
+            {cta?.subtitle || "Whether you're looking for a technology partner or a career opportunity, we'd love to hear from you."}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link

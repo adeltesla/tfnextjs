@@ -1,0 +1,24 @@
+{
+  "slug": "services",
+  "name": "Services",
+  "description": "Technology services, process, and tech stack",
+  "sections": {
+    "hero": {
+      "title": "End-to-End Technology Solutions",
+      "subtitle": "From strategy and design to development and support, we deliver comprehensive technology services that help your business innovate, scale, and stay ahead of the competition."
+    },
+    "process": {
+      "title": "Our Proven Process",
+      "subtitle": "A structured yet flexible methodology that ensures quality delivery while adapting to your unique needs."
+    },
+    "techStack": {
+      "title": "Our Technology Stack",
+      "subtitle": "We work with best-in-class tools and frameworks to build solutions that are modern, performant, and maintainable."
+    },
+    "cta": {
+      "title": "Let's Build Something Great Together",
+      "subtitle": "Tell us about your project and we'll put together a tailored proposal with a clear scope, timeline, and investment estimate."
+    }
+  },
+  "updatedAt": "2026-05-22T00:00:00.000Z"
+}

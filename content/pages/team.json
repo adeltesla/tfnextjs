@@ -1,0 +1,27 @@
+{
+  "slug": "team",
+  "name": "Team",
+  "description": "Leadership, team members, and company culture",
+  "sections": {
+    "hero": {
+      "title": "Meet the People Behind TechForge",
+      "subtitle": "We're a diverse team of 50+ engineers, designers, and strategists united by a passion for technology and a commitment to client success. Get to know the leadership team driving our vision."
+    },
+    "leadership": {
+      "title": "Founded by Engineers, Led by Vision"
+    },
+    "members": {
+      "title": "Practice Leaders & Senior Staff",
+      "subtitle": "Each practice area is led by a domain expert who brings deep industry experience and technical leadership."
+    },
+    "culture": {
+      "title": "Where Great People Do Great Work",
+      "content": "<p>At TechForge, we believe that the best technology comes from teams that are empowered, supported, and challenged. Our culture is built on four pillars:</p>"
+    },
+    "cta": {
+      "title": "Join Our Team",
+      "subtitle": "We're always looking for talented engineers, designers, and problem solvers. If you're passionate about technology and want to work on meaningful projects, we'd love to hear from you."
+    }
+  },
+  "updatedAt": "2026-05-22T00:00:00.000Z"
+}

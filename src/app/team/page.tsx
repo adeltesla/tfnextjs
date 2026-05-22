@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Briefcase, AtSign, Code, Mail } from "lucide-react";
+import { getPageContent } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Our Team",
@@ -129,7 +130,16 @@ const departments = [
   { name: "Delivery & Operations", count: 3 },
 ];
 
-export default function TeamPage() {
+export const dynamic = "force-dynamic";
+
+export default async function TeamPage() {
+  const content = await getPageContent("team");
+  const hero = content?.sections.hero;
+  const leadershipContent = content?.sections.leadership;
+  const members = content?.sections.members;
+  const culture = content?.sections.culture;
+  const cta = content?.sections.cta;
+
   return (
     <>
       {/* Hero */}
@@ -140,12 +150,10 @@ export default function TeamPage() {
               Our Team
             </p>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              Meet the People Behind TechForge
+              {hero?.title || "Meet the People Behind TechForge"}
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-[#b8b5d6]">
-              We&apos;re a diverse team of 50+ engineers, designers, and
-              strategists united by a passion for technology and a commitment to
-              client success. Get to know the leadership team driving our vision.
+              {hero?.subtitle || "We're a diverse team of 50+ engineers, designers, and strategists united by a passion for technology and a commitment to client success. Get to know the leadership team driving our vision."}
             </p>
           </div>
         </div>
@@ -173,7 +181,7 @@ export default function TeamPage() {
               Leadership
             </p>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Founded by Engineers, Led by Vision
+              {leadershipContent?.title || "Founded by Engineers, Led by Vision"}
             </h2>
           </div>
           <div className="mt-16 grid gap-8 md:grid-cols-3">
@@ -243,11 +251,10 @@ export default function TeamPage() {
               Key Team Members
             </p>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Practice Leaders & Senior Staff
+              {members?.title || "Practice Leaders & Senior Staff"}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">
-              Each practice area is led by a domain expert who brings deep
-              industry experience and technical leadership.
+              {members?.subtitle || "Each practice area is led by a domain expert who brings deep industry experience and technical leadership."}
             </p>
           </div>
           <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -286,13 +293,17 @@ export default function TeamPage() {
                 Our Culture
               </p>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Where Great People Do Great Work
+                {culture?.title || "Where Great People Do Great Work"}
               </h2>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
-                At TechForge, we believe that the best technology comes from
-                teams that are empowered, supported, and challenged. Our culture
-                is built on four pillars:
-              </p>
+              {culture?.content ? (
+                <div className="mt-6 text-lg leading-relaxed text-muted [&_p]:mb-4" dangerouslySetInnerHTML={{ __html: culture.content }} />
+              ) : (
+                <p className="mt-6 text-lg leading-relaxed text-muted">
+                  At TechForge, we believe that the best technology comes from
+                  teams that are empowered, supported, and challenged. Our culture
+                  is built on four pillars:
+                </p>
+              )}
               <ul className="mt-6 space-y-4">
                 {[
                   {
@@ -346,12 +357,10 @@ export default function TeamPage() {
       <section className="bg-gradient-to-r from-primary to-[#7083ff] py-16">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Join Our Team
+            {cta?.title || "Join Our Team"}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
-            We&apos;re always looking for talented engineers, designers, and
-            problem solvers. If you&apos;re passionate about technology and want
-            to work on meaningful projects, we&apos;d love to hear from you.
+            {cta?.subtitle || "We're always looking for talented engineers, designers, and problem solvers. If you're passionate about technology and want to work on meaningful projects, we'd love to hear from you."}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link

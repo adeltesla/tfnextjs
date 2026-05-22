@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getPageContent } from "@/lib/content";
 import {
   ArrowRight,
   Zap,
@@ -174,7 +175,15 @@ const techStack = [
   { category: "AI/ML", items: ["PyTorch", "TensorFlow", "LangChain", "OpenAI", "Hugging Face"] },
 ];
 
-export default function ServicesPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ServicesPage() {
+  const content = await getPageContent("services");
+  const hero = content?.sections.hero;
+  const process_ = content?.sections.process;
+  const techStackSection = content?.sections.techStack;
+  const cta = content?.sections.cta;
+
   return (
     <>
       {/* Hero */}
@@ -185,12 +194,10 @@ export default function ServicesPage() {
               Our Services
             </p>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              End-to-End Technology Solutions
+              {hero?.title || "End-to-End Technology Solutions"}
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-[#b8b5d6]">
-              From strategy and design to development and support, we deliver
-              comprehensive technology services that help your business innovate,
-              scale, and stay ahead of the competition.
+              {hero?.subtitle || "From strategy and design to development and support, we deliver comprehensive technology services that help your business innovate, scale, and stay ahead of the competition."}
             </p>
           </div>
         </div>
@@ -268,11 +275,10 @@ export default function ServicesPage() {
               How We Work
             </p>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Our Proven Process
+              {process_?.title || "Our Proven Process"}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">
-              A structured yet flexible methodology that ensures quality delivery
-              while adapting to your unique needs.
+              {process_?.subtitle || "A structured yet flexible methodology that ensures quality delivery while adapting to your unique needs."}
             </p>
           </div>
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -305,11 +311,10 @@ export default function ServicesPage() {
               Technologies
             </p>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Our Technology Stack
+              {techStackSection?.title || "Our Technology Stack"}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">
-              We work with best-in-class tools and frameworks to build solutions
-              that are modern, performant, and maintainable.
+              {techStackSection?.subtitle || "We work with best-in-class tools and frameworks to build solutions that are modern, performant, and maintainable."}
             </p>
           </div>
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
@@ -341,11 +346,10 @@ export default function ServicesPage() {
       <section className="bg-gradient-to-r from-primary to-[#7083ff] py-16">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Let&apos;s Build Something Great Together
+            {cta?.title || "Let's Build Something Great Together"}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
-            Tell us about your project and we&apos;ll put together a tailored
-            proposal with a clear scope, timeline, and investment estimate.
+            {cta?.subtitle || "Tell us about your project and we'll put together a tailored proposal with a clear scope, timeline, and investment estimate."}
           </p>
           <Link
             href="/contact"

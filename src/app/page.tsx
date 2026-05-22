@@ -1,3 +1,4 @@
+import { getPageContent } from "@/lib/content";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -94,7 +95,15 @@ const clients = [
   "Apex Digital",
 ];
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const content = await getPageContent("home");
+  const hero = content?.sections.hero;
+  const about = content?.sections.about;
+  const svc = content?.sections.services;
+  const cta = content?.sections.cta;
+
   return (
     <>
       {/* Hero Section */}
@@ -110,13 +119,10 @@ export default function Home() {
               Trusted by 200+ companies worldwide
             </div>
             <h1 className="animate-fade-in-up-delay-1 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Building the Future,{" "}
-              <span className="text-primary">One Solution</span> at a Time
+              {hero?.title || "Building the Future, One Solution at a Time"}
             </h1>
             <p className="animate-fade-in-up-delay-2 mt-6 max-w-2xl text-lg leading-relaxed text-[#b8b5d6] sm:text-xl">
-              We are a technology consulting firm that partners with ambitious
-              businesses to design, build, and scale digital products and
-              infrastructure that drive real results.
+              {hero?.subtitle || "We are a technology consulting firm that partners with ambitious businesses to design, build, and scale digital products and infrastructure that drive real results."}
             </p>
             <div className="animate-fade-in-up-delay-3 mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
@@ -165,19 +171,25 @@ export default function Home() {
                 About TechForge
               </p>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                A Decade of Innovation and Excellence
+                {about?.title || "A Decade of Innovation and Excellence"}
               </h2>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
-                Founded in 2015 in San Francisco, TechForge Solutions has grown
-                from a small team of passionate engineers into a full-service
-                technology consulting firm serving clients across 15+ countries.
-              </p>
-              <p className="mt-4 text-lg leading-relaxed text-muted">
-                Our mission is simple: empower businesses to thrive in the
-                digital age by delivering innovative, reliable, and scalable
-                technology solutions. We believe that great technology should be
-                accessible to every organization, regardless of size.
-              </p>
+              {about?.content ? (
+                <div className="mt-6 text-lg leading-relaxed text-muted [&_p]:mb-4" dangerouslySetInnerHTML={{ __html: about.content }} />
+              ) : (
+                <>
+                  <p className="mt-6 text-lg leading-relaxed text-muted">
+                    Founded in 2015 in San Francisco, TechForge Solutions has grown
+                    from a small team of passionate engineers into a full-service
+                    technology consulting firm serving clients across 15+ countries.
+                  </p>
+                  <p className="mt-4 text-lg leading-relaxed text-muted">
+                    Our mission is simple: empower businesses to thrive in the
+                    digital age by delivering innovative, reliable, and scalable
+                    technology solutions. We believe that great technology should be
+                    accessible to every organization, regardless of size.
+                  </p>
+                </>
+              )}
               <div className="mt-8 grid grid-cols-2 gap-6">
                 <div className="rounded-xl border border-border bg-card p-5">
                   <Award className="h-8 w-8 text-primary" />
@@ -223,11 +235,10 @@ export default function Home() {
               What We Do
             </p>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Comprehensive Technology Services
+              {svc?.title || "Comprehensive Technology Services"}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">
-              From strategy to execution, we provide end-to-end technology
-              services that help businesses innovate, scale, and compete.
+              {svc?.subtitle || "From strategy to execution, we provide end-to-end technology services that help businesses innovate, scale, and compete."}
             </p>
           </div>
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -318,11 +329,10 @@ export default function Home() {
       <section className="bg-secondary py-20 lg:py-28">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Ready to Transform Your Business?
+            {cta?.title || "Ready to Transform Your Business?"}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[#9694b8]">
-            Let&apos;s discuss how TechForge can help you achieve your technology
-            goals. Schedule a free consultation with our experts today.
+            {cta?.subtitle || "Let\u2019s discuss how TechForge can help you achieve your technology goals. Schedule a free consultation with our experts today."}
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link

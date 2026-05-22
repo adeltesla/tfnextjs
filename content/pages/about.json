@@ -1,0 +1,28 @@
+{
+  "slug": "about",
+  "name": "About",
+  "description": "Company story, mission, vision, values, and milestones",
+  "sections": {
+    "hero": {
+      "title": "Our Story, Our Mission, Our People",
+      "subtitle": "From a three-person startup to a global technology consulting firm, TechForge Solutions has been on a mission to make great technology accessible to every organization. Here's how we got here."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "content": "<p>To empower businesses of all sizes to thrive in the digital age by delivering innovative, reliable, and scalable technology solutions. We believe technology should be a catalyst for growth, not a barrier — and we're committed to making that a reality for every client we serve.</p>"
+    },
+    "vision": {
+      "title": "Our Vision",
+      "content": "<p>To be the most trusted technology partner for forward-thinking organizations worldwide. We envision a future where every business — from startups to enterprises — has access to world-class technology expertise that enables them to innovate fearlessly and scale confidently.</p>"
+    },
+    "overview": {
+      "title": "A Team of Problem Solvers and Innovators",
+      "content": "<p>TechForge Solutions is a full-service technology consulting firm headquartered in San Francisco, California. We specialize in helping businesses navigate digital transformation through expert consulting, custom software development, cloud architecture, and AI-powered solutions.</p><p>Our team of 50+ engineers, designers, and strategists bring decades of combined experience across fintech, healthcare, logistics, e-commerce, and enterprise SaaS. We work with organizations ranging from high-growth startups to Fortune 500 companies.</p>"
+    },
+    "cta": {
+      "title": "Want to Be Part of Our Story?",
+      "subtitle": "Whether you're looking for a technology partner or a career opportunity, we'd love to hear from you."
+    }
+  },
+  "updatedAt": "2026-05-22T00:00:00.000Z"
+}
