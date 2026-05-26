@@ -1,4 +1,4 @@
-import { SignJWT, jwtVerify } from "jose";
+import { CompactSign, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
 const SECRET = new TextEncoder().encode(
@@ -7,10 +7,16 @@ const SECRET = new TextEncoder().encode(
 const COOKIE_NAME = "tf-admin-token";
 
 export async function createToken(username: string): Promise<string> {
-  return new SignJWT({ username })
+  const now = Math.floor(Date.now() / 1000);
+  const claims = {
+    username,
+    iat: now,
+    exp: now + 24 * 60 * 60,
+  };
+  const payload = new TextEncoder().encode(JSON.stringify(claims));
+
+  return new CompactSign(payload)
     .setProtectedHeader({ alg: "HS256" })
-    .setExpirationTime("24h")
-    .setIssuedAt()
     .sign(SECRET);
 }
 
