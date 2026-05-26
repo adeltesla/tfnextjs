@@ -4,7 +4,7 @@
   "description": "Main landing page with hero, services, stats, and testimonials",
   "sections": {
     "hero": {
-      "title": "Building the Future, One Solution at a Time",
+      "title": "Building the Future, One Solution at a Time!",
       "subtitle": "We are a technology consulting firm that partners with ambitious businesses to design, build, and scale digital products and infrastructure that drive real results."
     },
     "about": {
@@ -20,5 +20,5 @@
       "subtitle": "Let's discuss how TechForge can help you achieve your technology goals. Schedule a free consultation with our experts today."
     }
   },
-  "updatedAt": "2026-05-22T05:17:09.379Z"
+  "updatedAt": "2026-05-26T03:48:20.970Z"
 }

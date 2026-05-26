@@ -1,0 +1,59 @@
+{
+  "navbar": {
+    "links": [
+      { "href": "/", "label": "Home" },
+      { "href": "/about", "label": "About" },
+      { "href": "/services", "label": "Services" },
+      { "href": "/team", "label": "Team" },
+      { "href": "/contact", "label": "Contact" }
+    ],
+    "ctaButton": {
+      "href": "/contact",
+      "label": "Get in Touch"
+    }
+  },
+  "footer": {
+    "tagline": "Empowering businesses through innovative technology solutions. We transform ideas into scalable, future-ready digital products that drive growth and efficiency.",
+    "contact": {
+      "email": "hello@techforge.com",
+      "phone": "+1 (555) 123-4567",
+      "address": "San Francisco, CA 94105"
+    },
+    "columns": [
+      {
+        "title": "Company",
+        "links": [
+          { "href": "/about", "label": "About Us" },
+          { "href": "/team", "label": "Our Team" },
+          { "href": "/services", "label": "Services" },
+          { "href": "/contact", "label": "Contact" }
+        ]
+      },
+      {
+        "title": "Services",
+        "links": [
+          { "href": "/services#digital-transformation", "label": "Digital Transformation" },
+          { "href": "/services#cloud-solutions", "label": "Cloud Solutions" },
+          { "href": "/services#ai-ml", "label": "AI & Machine Learning" },
+          { "href": "/services#custom-software", "label": "Custom Software" }
+        ]
+      },
+      {
+        "title": "Resources",
+        "links": [
+          { "href": "#", "label": "Blog" },
+          { "href": "#", "label": "Case Studies" },
+          { "href": "#", "label": "Whitepapers" },
+          { "href": "#", "label": "Careers" }
+        ]
+      }
+    ],
+    "socialLinks": [
+      { "href": "https://linkedin.com", "icon": "linkedin", "label": "LinkedIn" },
+      { "href": "https://twitter.com", "icon": "twitter", "label": "Twitter" },
+      { "href": "https://github.com", "icon": "github", "label": "GitHub" },
+      { "href": "https://youtube.com", "icon": "youtube", "label": "YouTube" }
+    ]
+  },
+  "updatedAt": "2026-05-26T00:00:00.000Z"
+}

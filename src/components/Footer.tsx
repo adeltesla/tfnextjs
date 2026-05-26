@@ -10,35 +10,97 @@ import {
   Video,
 } from "lucide-react";
 
-const footerLinks = {
-  company: [
-    { href: "/about", label: "About Us" },
-    { href: "/team", label: "Our Team" },
-    { href: "/services", label: "Services" },
-    { href: "/contact", label: "Contact" },
-  ],
-  services: [
-    { href: "/services#digital-transformation", label: "Digital Transformation" },
-    { href: "/services#cloud-solutions", label: "Cloud Solutions" },
-    { href: "/services#ai-ml", label: "AI & Machine Learning" },
-    { href: "/services#custom-software", label: "Custom Software" },
-  ],
-  resources: [
-    { href: "#", label: "Blog" },
-    { href: "#", label: "Case Studies" },
-    { href: "#", label: "Whitepapers" },
-    { href: "#", label: "Careers" },
-  ],
+interface MenuLink {
+  href: string;
+  label: string;
+}
+
+interface FooterColumn {
+  title: string;
+  links: MenuLink[];
+}
+
+interface SocialLink {
+  href: string;
+  icon: string;
+  label: string;
+}
+
+interface FooterProps {
+  tagline?: string;
+  contact?: {
+    email: string;
+    phone: string;
+    address: string;
+  };
+  columns?: FooterColumn[];
+  socialLinks?: SocialLink[];
+}
+
+const defaultTagline =
+  "Empowering businesses through innovative technology solutions. We transform ideas into scalable, future-ready digital products that drive growth and efficiency.";
+
+const defaultContact = {
+  email: "hello@techforge.com",
+  phone: "+1 (555) 123-4567",
+  address: "San Francisco, CA 94105",
 };
 
-const socialLinks = [
-  { href: "https://linkedin.com", icon: Briefcase, label: "LinkedIn" },
-  { href: "https://twitter.com", icon: AtSign, label: "Twitter" },
-  { href: "https://github.com", icon: Code, label: "GitHub" },
-  { href: "https://youtube.com", icon: Video, label: "YouTube" },
+const defaultColumns: FooterColumn[] = [
+  {
+    title: "Company",
+    links: [
+      { href: "/about", label: "About Us" },
+      { href: "/team", label: "Our Team" },
+      { href: "/services", label: "Services" },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
+  {
+    title: "Services",
+    links: [
+      { href: "/services#digital-transformation", label: "Digital Transformation" },
+      { href: "/services#cloud-solutions", label: "Cloud Solutions" },
+      { href: "/services#ai-ml", label: "AI & Machine Learning" },
+      { href: "/services#custom-software", label: "Custom Software" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { href: "#", label: "Blog" },
+      { href: "#", label: "Case Studies" },
+      { href: "#", label: "Whitepapers" },
+      { href: "#", label: "Careers" },
+    ],
+  },
 ];
 
-export default function Footer() {
+const defaultSocialLinks: SocialLink[] = [
+  { href: "https://linkedin.com", icon: "linkedin", label: "LinkedIn" },
+  { href: "https://twitter.com", icon: "twitter", label: "Twitter" },
+  { href: "https://github.com", icon: "github", label: "GitHub" },
+  { href: "https://youtube.com", icon: "youtube", label: "YouTube" },
+];
+
+const socialIconMap: Record<string, typeof Briefcase> = {
+  linkedin: Briefcase,
+  twitter: AtSign,
+  github: Code,
+  youtube: Video,
+};
+
+export default function Footer({
+  tagline,
+  contact,
+  columns,
+  socialLinks,
+}: FooterProps) {
+  const footerTagline = tagline ?? defaultTagline;
+  const footerContact = contact ?? defaultContact;
+  const footerColumns = columns ?? defaultColumns;
+  const footerSocials = socialLinks ?? defaultSocialLinks;
+
   return (
     <footer className="border-t border-[#2d2a47] bg-secondary">
       <div className="mx-auto max-w-7xl px-6 py-16">
@@ -54,80 +116,44 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#9694b8]">
-              Empowering businesses through innovative technology solutions.
-              We transform ideas into scalable, future-ready digital products
-              that drive growth and efficiency.
+              {footerTagline}
             </p>
             <div className="mt-6 space-y-3">
               <div className="flex items-center gap-3 text-sm text-[#9694b8]">
                 <Mail className="h-4 w-4 text-primary" />
-                <span>hello@techforge.com</span>
+                <span>{footerContact.email}</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-[#9694b8]">
                 <Phone className="h-4 w-4 text-primary" />
-                <span>+1 (555) 123-4567</span>
+                <span>{footerContact.phone}</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-[#9694b8]">
                 <MapPin className="h-4 w-4 text-primary" />
-                <span>San Francisco, CA 94105</span>
+                <span>{footerContact.address}</span>
               </div>
             </div>
           </div>
 
-          {/* Links columns */}
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-              Company
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#9694b8] transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-              Services
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.services.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#9694b8] transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-              Resources
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#9694b8] transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Dynamic link columns */}
+          {footerColumns.map((column) => (
+            <div key={column.title}>
+              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+                {column.title}
+              </h3>
+              <ul className="space-y-3">
+                {column.links.map((link, index) => (
+                  <li key={`${column.title}-${index}`}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-[#9694b8] transition-colors hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         {/* Bottom bar */}
@@ -136,18 +162,21 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} TechForge Solutions. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                className="rounded-lg p-2 text-[#6b6890] transition-colors hover:bg-[#1e1a3a] hover:text-white"
-              >
-                <social.icon className="h-5 w-5" />
-              </a>
-            ))}
+            {footerSocials.map((social) => {
+              const Icon = socialIconMap[social.icon] || Code;
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="rounded-lg p-2 text-[#6b6890] transition-colors hover:bg-[#1e1a3a] hover:text-white"
+                >
+                  <Icon className="h-5 w-5" />
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

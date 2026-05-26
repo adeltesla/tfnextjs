@@ -5,7 +5,12 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, Zap } from "lucide-react";
 
-const navLinks = [
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+const defaultLinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
@@ -13,9 +18,19 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-export default function Navbar() {
+const defaultCta: NavLink = { href: "/contact", label: "Get in Touch" };
+
+interface NavbarProps {
+  links?: NavLink[];
+  ctaButton?: NavLink;
+}
+
+export default function Navbar({ links, ctaButton }: NavbarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLinks = links ?? defaultLinks;
+  const cta = ctaButton ?? defaultCta;
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
@@ -47,10 +62,10 @@ export default function Navbar() {
           ))}
           <li className="ml-3">
             <Link
-              href="/contact"
+              href={cta.href}
               className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
             >
-              Get in Touch
+              {cta.label}
             </Link>
           </li>
         </ul>
@@ -86,11 +101,11 @@ export default function Navbar() {
             ))}
             <li className="mt-3">
               <Link
-                href="/contact"
+                href={cta.href}
                 onClick={() => setMobileOpen(false)}
                 className="block rounded-lg bg-primary px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
               >
-                Get in Touch
+                {cta.label}
               </Link>
             </li>
           </ul>

@@ -15,6 +15,9 @@ import {
   Users,
   Mail,
   ExternalLink,
+  Navigation,
+  PanelBottom,
+  ChevronRight,
 } from "lucide-react";
 
 interface Page {
@@ -97,6 +100,35 @@ export default function AdminDashboard() {
 
       {/* Content */}
       <main className="mx-auto max-w-6xl px-6 py-10">
+        {/* Menu Management */}
+        <div className="mb-10">
+          <h2 className="text-2xl font-bold">Menus</h2>
+          <p className="mt-1 text-sm text-muted">
+            Manage the header navigation and footer menus for your website.
+          </p>
+          <Link
+            href="/admin/menus"
+            className="group mt-4 flex items-center justify-between rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+          >
+            <div className="flex items-center gap-4">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                <Navigation className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="text-base font-semibold">
+                  Header & Footer Menus
+                </h3>
+                <p className="mt-0.5 text-xs text-muted">
+                  Edit navigation links, footer columns, contact info, and
+                  social links
+                </p>
+              </div>
+            </div>
+            <ChevronRight className="h-5 w-5 text-muted transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+          </Link>
+        </div>
+
+        {/* Pages */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold">Pages</h2>
           <p className="mt-1 text-sm text-muted">
