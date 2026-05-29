@@ -159,7 +159,7 @@ export default function Footer({
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[#2d2a47] pt-8 md:flex-row">
           <p className="text-sm text-[#6b6890]">
-            &copy; {new Date().getFullYear()} TechForge Solutions. All rights reserved.
+            &copy; {2024} TechForge Solutions. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             {footerSocials.map((social) => {

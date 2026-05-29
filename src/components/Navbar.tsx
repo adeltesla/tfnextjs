@@ -88,7 +88,7 @@ export default function Navbar({ links, ctaButton }: NavbarProps) {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={() => setMobileOpen(true)}
                   className={`block rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
                     pathname === link.href
                       ? "bg-primary/10 text-primary"

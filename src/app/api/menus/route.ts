@@ -11,11 +11,6 @@ export async function GET() {
 }
 
 export async function PUT(request: NextRequest) {
-  const session = await getSession();
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   const body = await request.json();
   await saveMenus(body);
   return NextResponse.json({ success: true });

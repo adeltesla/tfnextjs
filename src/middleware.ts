@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Skip login page and API auth route
-  if (pathname === "/admin/login" || pathname === "/api/auth") {
+  if (pathname.startsWith("/admin/login") || pathname === "/api/auth") {
     return NextResponse.next();
   }
 
