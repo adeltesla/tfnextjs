@@ -53,7 +53,7 @@ export async function listPages(): Promise<PageContent[]> {
     }
     return pages.sort((a, b) => {
       const order = ["home", "about", "services", "team", "contact"];
-      return order.indexOf(b.slug) - order.indexOf(a.slug);
+      return order.indexOf(a.slug) - order.indexOf(b.slug);
     });
   } catch {
     return [];

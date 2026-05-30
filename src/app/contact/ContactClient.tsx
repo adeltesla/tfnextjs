@@ -73,6 +73,7 @@ export default function ContactClient({ content }: { content?: ContactContentPro
   });
 
   const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     setSubmitted(true);
   };
 

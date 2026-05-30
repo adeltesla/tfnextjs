@@ -11,7 +11,7 @@ export async function createToken(username: string): Promise<string> {
   const claims = {
     username,
     iat: now,
-    exp: now + 24 * 60,
+    exp: now + 24 * 60 * 60,
   };
   const payload = new TextEncoder().encode(JSON.stringify(claims));
 
